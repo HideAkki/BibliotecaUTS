@@ -1,0 +1,10 @@
+com\bibliotecauts\BibliotecaUTS\Entities\Book.class
+com\bibliotecauts\BibliotecaUTS\Service\UserService.class
+com\bibliotecauts\BibliotecaUTS\Entities\User.class
+com\bibliotecauts\BibliotecaUTS\Repository\UserRepository.class
+com\bibliotecauts\BibliotecaUTS\Controller\AdminController.class
+com\bibliotecauts\BibliotecaUTS\Repository\BookRepository.class
+com\bibliotecauts\BibliotecaUTS\Service\BookService.class
+com\bibliotecauts\BibliotecaUTS\BibliotecaUtsApplication.class
+com\bibliotecauts\BibliotecaUTS\Controller\HomeController.class
+com\bibliotecauts\BibliotecaUTS\Controller\UserController.class

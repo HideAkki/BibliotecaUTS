@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Administrar Libros</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            background-color: #333;
+            margin-bottom: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            display: inline-block;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 90%;
+            margin: 0 auto 20px;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        form {
+            text-align: center;
+        }
+        input[type="text"],
+        select,
+        button {
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 3px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a th:href="@{/admin}">Inicio</a></li>
+    </ul>
+</nav>
+<h1>Lista de Libros</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Usuario</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.id}"></td>
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.user != null ? book.user.email : 'No asignado'}"></td>
+        <td>
+            <form th:action="@{/admin/book/assign/{id}(id=${book.id})}" method="post">
+                <select name="userId">
+                    <option value="">Seleccionar Usuario</option>
+                    <th:block th:each="user : ${users}">
+                        <option th:value="${user.id}" th:text="${user.email}"></option>
+                    </th:block>
+                </select>
+                <button type="submit">Asignar</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<h2>Crear Libro</h2>
+<form th:action="@{/admin/book/create}" method="post">
+    <input type="text" name="title" placeholder="Título" required/>
+    <input type="text" name="author" placeholder="Autor" required/>
+    <button type="submit">Crear</button>
+</form>
+
+</body>
+</html>
